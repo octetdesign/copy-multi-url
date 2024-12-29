@@ -1,9 +1,9 @@
 {
   "name": "url-copy-helper",
   "displayName": "URL Copy Helper",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "author": "**",
-  "description": "This is a Chrome extension for copying the currently displayed web page to the clipboard in various link formats.",
+  "description": "表示中のWebページのリンクをいろいろな形式でクリップボードにコピーします。",
   "type": "module",
   "license": "MIT",
   "keywords": [
