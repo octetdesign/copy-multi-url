@@ -44,8 +44,8 @@ const defaultSettings: Settings = {
     'Tab',
     'PageInfo',
   ],
-  addDescription: true,
-  addLineBreak: true,
+  addDescription: false,
+  addLineBreak: false,
 }
 
 const saveSettingsToStorage = async (settings: Settings) => {
