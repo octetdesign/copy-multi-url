@@ -31,5 +31,5 @@ export default defineManifest({
       matches: [],
     },
   ],
-  permissions: ['sidePanel', 'storage', 'scripting', 'activeTab', 'clipboardWrite'],
+  permissions: ['activeTab', 'clipboardWrite', 'storage'],
 })
