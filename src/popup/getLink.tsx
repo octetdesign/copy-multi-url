@@ -1,5 +1,4 @@
 import { ReactNode } from 'react'
-import { PageData } from '../contentScript'
 import * as LineBreakLink from './components/LineBreakLink'
 import * as Markdown1Link from './components/Markdown1Link'
 import * as Markdown2Link from './components/Markdown2Link'
@@ -8,7 +7,7 @@ import * as WikiLink from './components/WikiLink'
 import * as TextileLink from './components/TextileLink'
 import * as TabLink from './components/TabLink'
 import * as PageInfo from './components/PageInfo'
-import { Settings } from './Popup'
+import { PageData, Settings } from './Popup'
 
 export type LinkType =
   | 'LineBreak'

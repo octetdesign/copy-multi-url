@@ -15,7 +15,6 @@ import {
 
 import './Popup.css'
 import { getLinkItemList, GroupInfoList, LinkType } from './getLink'
-import { PageData } from '../contentScript'
 
 // import LineBreakIcon from '@mui/icons-material/KeyboardReturn'
 import LineBreakIcon from '@mui/icons-material/SubdirectoryArrowLeft'
@@ -27,6 +26,60 @@ import { WikiIcon } from './components/icon/WikiIcon'
 import TextileIcon from '@mui/icons-material/TextFields'
 import PageInfoIcon from '@mui/icons-material/Article'
 import TabIcon from '@mui/icons-material/KeyboardTab'
+
+interface OpenGraphInfo {
+  title?: string
+  description?: string
+  type?: string
+  url?: string
+  siteName?: string
+}
+
+export interface PageData {
+  title: string
+  url: string
+  description?: string
+  author?: string
+  keywords?: string
+  og?: OpenGraphInfo
+}
+
+const getPageData = () => {
+  const location = window.location
+  const url = location.href
+  let title = document.title
+
+  // title が空だったら location から生成する
+  if (title === '') {
+    title = location.pathname.replace(/\/$/, '').replace(/.*\//, '')
+    title = title === '' ? location.hostname : `${title} - ${location.hostname}`
+  }
+
+  const getMetaData = (name: string) => {
+    const data = document.querySelector(`meta[${name}]`)?.getAttribute('content')
+    return data ? data : undefined
+  }
+  const getOgData = (name: string) => {
+    return getMetaData(`property="og:${name}"`)
+  }
+
+  const pageData: PageData = {
+    title,
+    url,
+    description: getMetaData('name="description"'),
+    author: getMetaData('name="author"'),
+    keywords: getMetaData('name="keywords"'),
+    og: {
+      title: getOgData('title'),
+      description: getOgData('description'),
+      type: getOgData('type'),
+      url: getOgData('url'),
+      siteName: getOgData('site_name'),
+    },
+  }
+
+  return pageData
+}
 
 export interface Settings {
   enabledTypes: LinkType[]
@@ -78,6 +131,25 @@ export const Popup = () => {
   const addLineBreak = settings.addLineBreak
 
   useEffect(() => {
+    const func = async () => {
+      const [tab] = await chrome.tabs.query({ active: true, currentWindow: true })
+      if (!tab?.id || !tab?.url) {
+        console.warn('No active tab found.')
+        return
+      }
+
+      const result = await chrome.scripting.executeScript({
+        target: { tabId: tab.id },
+        func: getPageData,
+      })
+      const pageData = result[0].result
+
+      setPageData(pageData)
+    }
+    func()
+  }, [])
+
+  useEffect(() => {
     const load = async () => {
       const settings = await loadSettings()
       if (!settings) {
@@ -86,22 +158,6 @@ export const Popup = () => {
       setSettings(settings)
     }
     load()
-  }, [])
-
-  useEffect(() => {
-    const getPageData = async () => {
-      const [tab] = await chrome.tabs.query({ active: true, currentWindow: true })
-      if (!tab.id) {
-        return
-      }
-      const response = await chrome.tabs.sendMessage(tab.id, { action: 'getPageData' })
-      if (!response) {
-        return
-      }
-      setPageData(response as PageData)
-    }
-
-    getPageData()
   }, [])
 
   const saveSettings = (newSettings: Settings) => {

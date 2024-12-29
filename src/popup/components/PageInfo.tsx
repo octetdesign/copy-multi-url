@@ -1,5 +1,4 @@
 import { blueGrey } from '@mui/material/colors'
-import { PageData } from '../../contentScript'
 import { GroupInfo, LinkData, LinkInfo } from '../getLink'
 import { Settings } from '../Popup'
 
