@@ -15,13 +15,13 @@ export const linkInfoList: LinkInfo[] = [
     groupInfo,
     description: false,
     getLinkText: (props) => getLinkText(props),
-    template: (props) => PageInfoTemplate(props),
+    buttonText: (props) => ButtonText(props),
   },
   {
     groupInfo,
     description: true,
     getLinkText: (props) => getLinkText(props),
-    template: (props) => PageInfoTemplate(props),
+    buttonText: (props) => ButtonText(props),
   },
 ]
 
@@ -36,12 +36,12 @@ const getLinkText = ({ linkData, settings }: { linkData: LinkData; settings: Set
   }
   add(pageData.title, 'title')
   add(pageData.url, 'url')
-  add(pageData.description, 'description')
+  add(pageData.description, 'description') // NOTE: settings.addDescription の設定は無視して常に出力
   add(pageData.author, 'author')
   add(pageData.keywords, 'keywords')
   add(pageData.og?.title, 'og:title')
   add(pageData.og?.url, 'og:url')
-  add(pageData.og?.description, 'og:description')
+  add(pageData.og?.description, 'og:description') // NOTE: settings.addDescription の設定は無視して常に出力
   add(pageData.og?.siteName, 'og:site_name')
   add(pageData.og?.type, 'og:type')
   let text = lines.join('\n')
@@ -51,13 +51,17 @@ const getLinkText = ({ linkData, settings }: { linkData: LinkData; settings: Set
   return text
 }
 
-const PageInfoTemplate = ({ linkData, settings }: { linkData: LinkData; settings: Settings }) => {
+/** リンクアイテムボタンに表示するテキストのコンポーネント */
+const ButtonText = ({ linkData, settings }: { linkData: LinkData; settings: Settings }) => {
   const { pageData } = linkData
   const Info = ({ label, value }: { label: string; value?: string }) => {
     if (value === undefined) return undefined
-    const cellStyle = {
+    const cellStyle: React.CSSProperties = {
       color: 'rgba(0, 0, 0, 0.9)',
+      fontFamily: 'inherit',
+      fontSize: 'inherit',
       fontWeight: 'normal',
+      textAlign: 'left',
       borderBottom: 'solid 1px #ddd',
       padding: '2px 4px',
     }

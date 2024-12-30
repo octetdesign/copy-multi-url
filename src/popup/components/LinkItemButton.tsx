@@ -38,20 +38,18 @@ export const LinkItemButton = ({ linkItem }: { linkItem: LinkItem }) => {
       <Tooltip title={linkInfo.groupInfo.label} arrow placement="bottom">
         <div style={{ ...IconSize, opacity: 0.5 }}>{Icons[type]}</div>
       </Tooltip>
-      {/* リンクプレビュー */}
+      {/* リンク文字列のプレビュー */}
       <Box
         title="Copy to Clipboard"
         sx={{
-          backgroundColor: 'rgba(255, 255, 255, 0.9)',
           fontFamily: 'system-ui',
           fontSize: '0.8rem',
-          textAlign: 'left',
-          whiteSpace: 'pre-wrap',
+          backgroundColor: 'rgba(255, 255, 255, 0.9)',
           borderRadius: 1,
           p: 1,
         }}
       >
-        {linkItem.component}
+        {linkItem.buttonText}
       </Box>
     </Button>
   )

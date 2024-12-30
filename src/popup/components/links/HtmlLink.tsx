@@ -16,13 +16,13 @@ export const linkInfoList: LinkInfo[] = [
     groupInfo,
     description: false,
     getLinkText: (props) => getLinkText(props),
-    template: (props) => HtmlTemplate(props),
+    buttonText: (props) => ButtonText(props),
   },
   {
     groupInfo,
     description: true,
     getLinkText: (props) => getLinkText(props),
-    template: (props) => HtmlTemplate(props),
+    buttonText: (props) => ButtonText(props),
   },
 ]
 
@@ -50,7 +50,8 @@ const getLinkText = ({ linkData, settings }: { linkData: LinkData; settings: Set
   return text
 }
 
-const HtmlTemplate = ({ linkData, settings }: { linkData: LinkData; settings: Settings }) => {
+/** リンクアイテムボタンに表示するテキストのコンポーネント */
+const ButtonText = ({ linkData, settings }: { linkData: LinkData; settings: Settings }) => {
   const { link, url, description } = linkData
   const { addDescription, addLineBreak } = settings
   return (

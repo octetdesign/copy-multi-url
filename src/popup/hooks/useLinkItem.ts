@@ -24,10 +24,14 @@ export type LinkType =
 
 /** リンク定義 */
 export interface LinkInfo {
+  /** グループ定義 */
   groupInfo: GroupInfo
+  /** 説明を含むか */
   description: boolean
+  /** リンク文字列の取得 */
   getLinkText: (props: { linkData: LinkData; settings: Settings }) => string
-  template: (props: { linkData: LinkData; settings: Settings }) => React.ReactNode
+  /** リンクアイテムボタンに表示するテキストのコンポーネント */
+  buttonText: (props: { linkData: LinkData; settings: Settings }) => React.ReactNode
 }
 
 /** リンク定義のリスト */
@@ -63,8 +67,8 @@ export interface LinkItem {
   getFrom: GetFrom
   /** リンクテキスト */
   text: string
-  /** リンクプレビューコンポーネント */
-  component: React.ReactNode
+  /** リンクアイテムボタンに表示するテキストのコンポーネント */
+  buttonText: React.ReactNode
 }
 
 /** リンクアイテムフック */
@@ -98,9 +102,9 @@ export const useLinkItem = ({
             return
           }
           // 画面表示用のリンクコンポーネントを取得
-          const component = linkInfo.template({ linkData, settings })
+          const buttonText = linkInfo.buttonText({ linkData, settings })
           // リストに追加
-          linkItemList.push({ id, linkInfo, getFrom, text, component })
+          linkItemList.push({ id, linkInfo, getFrom, text, buttonText })
         })
       })
     // リンクアイテムリストの並べ替え

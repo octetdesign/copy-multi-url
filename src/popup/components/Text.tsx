@@ -8,10 +8,12 @@ export const Paragraph = ({ children, sx }: { children: ReactNode; sx?: SxProps 
   <Typography
     component="p"
     sx={{
-      fontSize: '0.8rem',
-      fontFamily: 'system-ui',
-      wordBreak: 'break-all',
+      fontFamily: 'inherit',
+      fontSize: 'inherit',
       lineHeight: '1.1',
+      wordBreak: 'break-all',
+      textAlign: 'left',
+      whiteSpace: 'pre-wrap',
       ...sx,
     }}
   >
