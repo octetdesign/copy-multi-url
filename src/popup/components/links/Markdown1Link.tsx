@@ -11,9 +11,6 @@ export const groupInfo: GroupInfo = {
   color: cyan[200],
 }
 
-const escapeLink = (link: string) => link.replaceAll('[', '\\[').replaceAll(']', '\\]')
-const escapeUrl = (url: string) => url.replaceAll('(', '\\(').replaceAll(')', '\\)')
-
 export const linkInfoList: LinkInfo[] = [
   {
     groupInfo,
@@ -28,6 +25,9 @@ export const linkInfoList: LinkInfo[] = [
     template: (props) => Markdown1Template(props),
   },
 ]
+
+const escapeLink = (link: string) => link.replaceAll('[', '\\[').replaceAll(']', '\\]')
+const escapeUrl = (url: string) => url.replaceAll('(', '\\(').replaceAll(')', '\\)')
 
 /** リンクテキスト（クリップボードにコピーするテキスト）の取得 */
 const getLinkText = ({ linkData, settings }: { linkData: LinkData; settings: Settings }) => {

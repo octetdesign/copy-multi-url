@@ -11,8 +11,6 @@ export const groupInfo: GroupInfo = {
   color: green[200],
 }
 
-const escapeChars = (str: string) => str.replaceAll('\t', '\\t').replaceAll('\n', '\\n')
-
 export const linkInfoList: LinkInfo[] = [
   {
     groupInfo,
@@ -27,6 +25,8 @@ export const linkInfoList: LinkInfo[] = [
     template: (props) => TabTextTemplate(props),
   },
 ]
+
+const escapeChars = (str: string) => str.replaceAll('\t', '\\t').replaceAll('\n', '\\n')
 
 /** リンクテキスト（クリップボードにコピーするテキスト）の取得 */
 const getLinkText = ({ linkData, settings }: { linkData: LinkData; settings: Settings }) => {

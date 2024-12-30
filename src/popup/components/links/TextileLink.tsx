@@ -11,8 +11,6 @@ export const groupInfo: GroupInfo = {
   color: brown[200],
 }
 
-const escapeLink = (link: string) => link.replaceAll('"', '\\"')
-
 export const linkInfoList: LinkInfo[] = [
   {
     groupInfo,
@@ -27,6 +25,8 @@ export const linkInfoList: LinkInfo[] = [
     template: (props) => TextileTemplate(props),
   },
 ]
+
+const escapeLink = (link: string) => link.replaceAll('"', '\\"')
 
 /** リンクテキスト（クリップボードにコピーするテキスト）の取得 */
 const getLinkText = ({ linkData, settings }: { linkData: LinkData; settings: Settings }) => {

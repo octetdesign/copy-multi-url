@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react'
 import { LinkType } from '../hooks/useLinkItem'
 
-/** 機能拡張の設定 */
+/** 拡張機能設定 */
 export interface Settings {
   /** グループの並び順 */
   groupOrder: LinkType[]
@@ -30,12 +30,12 @@ const defaultSettings: Settings = {
   addLineBreak: false,
 }
 
-/** 拡張機能の設定 */
+/** 拡張機能設定 */
 export const useSettings = () => {
-  /** 拡張機能の設定 */
+  /** 拡張機能設定 */
   const [settings, setSettings] = useState<Settings>(defaultSettings)
 
-  /** 拡張機能の設定を読み込む */
+  /** 拡張機能設定を読み込む */
   const loadSettings = useCallback(async (): Promise<Settings> => {
     return new Promise((resolve, reject) => {
       chrome.storage.local.get(['settings'], (result) => {
@@ -48,7 +48,7 @@ export const useSettings = () => {
     })
   }, [])
 
-  /** 拡張機能の設定を保存する */
+  /** 拡張機能設定を保存する */
   const saveSettings = useCallback(async (settings: Settings) => {
     try {
       await chrome.storage.local.set({ settings })
@@ -58,7 +58,7 @@ export const useSettings = () => {
     }
   }, [])
 
-  /** 拡張機能の設定を更新する */
+  /** 拡張機能設定を更新する */
   const updateSettings = useCallback((newSettings: Settings) => {
     setSettings(newSettings)
     saveSettings(newSettings)
@@ -77,7 +77,7 @@ export const useSettings = () => {
   }, [])
 
   return {
-    /** 拡張機能の設定 */
+    /** 拡張機能設定 */
     settings,
     /** 設定を更新する */
     updateSettings,

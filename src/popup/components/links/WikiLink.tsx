@@ -11,8 +11,6 @@ export const groupInfo: GroupInfo = {
   color: orange[200],
 }
 
-const escapeLink = (link: string) => link.replaceAll('[', '&#91;').replaceAll(']', '&#93;')
-
 export const linkInfoList: LinkInfo[] = [
   {
     groupInfo,
@@ -27,6 +25,8 @@ export const linkInfoList: LinkInfo[] = [
     template: (props) => WikiTemplate(props),
   },
 ]
+
+const escapeLink = (link: string) => link.replaceAll('[', '&#91;').replaceAll(']', '&#93;')
 
 /** リンクテキスト（クリップボードにコピーするテキスト）の取得 */
 const getLinkText = ({ linkData, settings }: { linkData: LinkData; settings: Settings }) => {

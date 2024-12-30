@@ -11,8 +11,6 @@ export const groupInfo: GroupInfo = {
   color: blue[200],
 }
 
-const escapeLink = (link: string) => link.replaceAll('[', '\\[').replaceAll(']', '\\]')
-
 export const linkInfoList: LinkInfo[] = [
   {
     groupInfo,
@@ -27,6 +25,8 @@ export const linkInfoList: LinkInfo[] = [
     template: (props) => Markdown2Template(props),
   },
 ]
+
+const escapeLink = (link: string) => link.replaceAll('[', '\\[').replaceAll(']', '\\]')
 
 /** リンクテキスト（クリップボードにコピーするテキスト）の取得 */
 const getLinkText = ({ linkData, settings }: { linkData: LinkData; settings: Settings }) => {

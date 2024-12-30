@@ -30,7 +30,7 @@ export interface PageData {
   og?: OpenGraphInfo
 }
 
-/** ページデータの取得フック */
+/** ページデータフック */
 export const usePageData = () => {
   /** ページデータ */
   const [pageData, setPageData] = useState<PageData>()
@@ -91,5 +91,8 @@ export const usePageData = () => {
     load()
   }, [])
 
-  return { pageData }
+  return {
+    /** ページデータ */
+    pageData,
+  }
 }

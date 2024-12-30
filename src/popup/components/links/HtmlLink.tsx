@@ -10,6 +10,22 @@ export const groupInfo: GroupInfo = {
   label: 'HTML',
   color: pink[200],
 }
+
+export const linkInfoList: LinkInfo[] = [
+  {
+    groupInfo,
+    description: false,
+    getLinkText: (props) => getLinkText(props),
+    template: (props) => HtmlTemplate(props),
+  },
+  {
+    groupInfo,
+    description: true,
+    getLinkText: (props) => getLinkText(props),
+    template: (props) => HtmlTemplate(props),
+  },
+]
+
 const escapeHtml = (str: string) => {
   return str
     .replace(/&/g, '&amp;')
@@ -19,23 +35,6 @@ const escapeHtml = (str: string) => {
     .replace(/'/g, '&#039;')
     .replaceAll('\n', '<br>')
 }
-
-export const linkInfoList: LinkInfo[] = [
-  {
-    groupInfo,
-    description: false,
-    getLinkText: (props) => getLinkText(props),
-    template: (props) => HtmlTemplate(props),
-    // escape: { link: escapeHtml },
-  },
-  {
-    groupInfo,
-    description: true,
-    getLinkText: (props) => getLinkText(props),
-    template: (props) => HtmlTemplate(props),
-    // escape: { link: escapeHtml, description: escapeHtml },
-  },
-]
 
 /** リンクテキスト（クリップボードにコピーするテキスト）の取得 */
 const getLinkText = ({ linkData, settings }: { linkData: LinkData; settings: Settings }) => {

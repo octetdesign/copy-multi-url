@@ -54,7 +54,9 @@ export interface LinkData {
 type GetFrom = 'document' | 'og'
 
 /** リンクアイテム */
-interface LinkItem {
+export interface LinkItem {
+  /** ID */
+  id: string
   /** リンク定義 */
   linkInfo: LinkInfo
   /** ページデータの取得元 */
@@ -70,7 +72,9 @@ export const useLinkItem = ({
   pageData,
   settings,
 }: {
+  /** ページデータ */
   pageData: PageData | undefined
+  /** 拡張機能設定 */
   settings: Settings
 }) => {
   /** リンクアイテムリスト */
@@ -83,8 +87,9 @@ export const useLinkItem = ({
     LinkInfoList
       // 説明を付加する／しないでフィルタ
       .filter((linkInfo) => linkInfo.description === settings.addDescription)
-      .forEach((linkInfo) => {
+      .forEach((linkInfo, index) => {
         getFromList.forEach((getFrom) => {
+          const id = `link-${index}-${getFrom}`
           const linkData = getLinkData[getFrom](pageData)
           // リンクテキスト（クリップボードにコピーするテキスト）の取得
           const text = linkInfo.getLinkText({ linkData, settings })
@@ -95,7 +100,7 @@ export const useLinkItem = ({
           // 画面表示用のリンクコンポーネントを取得
           const component = linkInfo.template({ linkData, settings })
           // リストに追加
-          linkItemList.push({ linkInfo, getFrom, text, component })
+          linkItemList.push({ id, linkInfo, getFrom, text, component })
         })
       })
     // リンクアイテムリストの並べ替え
@@ -119,7 +124,10 @@ export const useLinkItem = ({
     return linkItemList
   }, [pageData, settings])
 
-  return { linkItemList }
+  return {
+    /** リンクアイテムリスト */
+    linkItemList,
+  }
 }
 
 /** リンクデータの取得 */
