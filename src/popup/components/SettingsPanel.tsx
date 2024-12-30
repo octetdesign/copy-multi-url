@@ -13,6 +13,7 @@ import { GroupInfo } from '../hooks/useGroupInfo'
 import { Settings } from '../hooks/useSettings'
 import { GroupButton } from './GroupButton'
 import { Icons } from './Icons'
+import { getLocalizeMessage } from '../modules/i18n'
 
 /** 設定パネル */
 export const SettingsPanel = ({
@@ -107,15 +108,21 @@ export const SettingsPanel = ({
           px: 0.5,
         }}
       >
-        <Typography sx={{ color: '#666', fontSize: '0.7rem' }}>Add</Typography>
+        {/* Add */}
+        <Typography sx={{ color: '#666', fontSize: '0.7rem' }}>
+          {getLocalizeMessage('settings_add', 'Add')}
+        </Typography>
+        {/* description */}
         <FormControlLabel
           control={<Checkbox checked={addDescription} size="small" disableRipple sx={{ p: 0 }} />}
           label={<Typography sx={{ color: '#666', fontSize: '0.7rem' }}>description</Typography>}
+          title={getLocalizeMessage('settings_description_tooltip', '')}
           onChange={(e, checked) => {
             onChangeSettings({ ...settings, addDescription: checked })
           }}
           sx={{ m: 0 }}
         />
+        {/* break */}
         <FormControlLabel
           control={<Checkbox checked={addLineBreak} size="small" disableRipple sx={{ p: 0 }} />}
           label={
@@ -130,6 +137,7 @@ export const SettingsPanel = ({
               [{<LineBreakIcon sx={{ color: '#666', width: '10px' }} />}]
             </Typography>
           }
+          title={getLocalizeMessage('settings_line_break_tooltip', '')}
           onChange={(e, checked) => {
             onChangeSettings({ ...settings, addLineBreak: checked })
           }}

@@ -1,0 +1,47 @@
+{
+  "extension_display_name": {
+    "message": "URL Copy Helper"
+  },
+  "extension_description": {
+    "message": "表示中のWebページのリンクをいろいろな形式でクリップボードにコピーします。"
+  },
+  "group_label_line_break": {
+    "message": "改行"
+  },
+  "group_label_line_markdown_1": {
+    "message": "Markdown 1"
+  },
+  "group_label_line_markdown_2": {
+    "message": "Markdown 2"
+  },
+  "group_label_line_html": {
+    "message": "HTML"
+  },
+  "group_label_line_wiki": {
+    "message": "Wiki"
+  },
+  "group_label_line_textile": {
+    "message": "Textile"
+  },
+  "group_label_tab": {
+    "message": "タブ区切り"
+  },
+  "group_label_page_info": {
+    "message": "ページ情報"
+  },
+  "link_item_button_tooltip": {
+    "message": "クリックしてクリップボードにコピー。"
+  },
+  "settings_add": {
+    "message": "Add"
+  },
+  "settings_description_tooltip": {
+    "message": "リンク文字列に説明を追加（ページに説明データがある場合のみ）"
+  },
+  "settings_line_break_tooltip": {
+    "message": "リンク文字列の最後に改行を追加"
+  },
+  "settings_group_button_tooltip": {
+    "message": "クリックでリンクの表示／非表示を切り替え。ドラッグ＆ドロップでリンクを並べ替え。"
+  }
+}

@@ -3,11 +3,12 @@ import { LinkData, LinkInfo } from '../../hooks/useLinkItem'
 import { Break, DescriptionText, LinkText, Paragraph, UrlText } from '../Text'
 import { Settings } from '../../hooks/useSettings'
 import { GroupInfo } from '../../hooks/useGroupInfo'
+import { getLocalizeMessage } from '../../modules/i18n'
 
 export const groupInfo: GroupInfo = {
   id: 'LineBreak',
   type: 'LineBreak',
-  label: 'Line Delimited',
+  label: getLocalizeMessage('group_label_line_break', 'Line Delimited'),
   color: lime[200],
 }
 

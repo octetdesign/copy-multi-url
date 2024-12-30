@@ -1,0 +1,47 @@
+{
+  "extension_display_name": {
+    "message": "URL Copy Helper"
+  },
+  "extension_description": {
+    "message": "Copy links from the current webpage to clipboard in various formats."
+  },
+  "group_label_line_break": {
+    "message": "Line Delimited"
+  },
+  "group_label_line_markdown_1": {
+    "message": "Markdown 1"
+  },
+  "group_label_line_markdown_2": {
+    "message": "Markdown 2"
+  },
+  "group_label_line_html": {
+    "message": "HTML"
+  },
+  "group_label_line_wiki": {
+    "message": "Wiki"
+  },
+  "group_label_line_textile": {
+    "message": "Textile"
+  },
+  "group_label_tab": {
+    "message": "Tab Delimited"
+  },
+  "group_label_page_info": {
+    "message": "Page Info"
+  },
+  "link_item_button_tooltip": {
+    "message": "Click to copy to clipboard."
+  },
+  "settings_add": {
+    "message": "Add"
+  },
+  "settings_description_tooltip": {
+    "message": "Add description to link text. (Only when description data exists on the page)"
+  },
+  "settings_line_break_tooltip": {
+    "message": "Add a line break at the end of link text."
+  },
+  "settings_group_button_tooltip": {
+    "message": "Click to show/hide links. Drag & drop to reorder links."
+  }
+}

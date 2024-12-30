@@ -2,6 +2,7 @@ import { Button, Stack, Typography } from '@mui/material'
 import { UniqueIdentifier } from '@dnd-kit/core'
 import { useSortable } from '@dnd-kit/sortable'
 import { CSS } from '@dnd-kit/utilities'
+import { getLocalizeMessage } from '../modules/i18n'
 
 interface GroupButtonProps {
   id: UniqueIdentifier
@@ -28,6 +29,7 @@ export const GroupButton = (props: GroupButtonProps) => {
       {...attributes}
       onClick={onClick}
       fullWidth
+      title={getLocalizeMessage('settings_group_button_tooltip', '')}
       style={style}
       sx={{
         color: foreColor,

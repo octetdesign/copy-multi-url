@@ -3,11 +3,12 @@ import { LinkData, LinkInfo } from '../../hooks/useLinkItem'
 import { Break, DescriptionText, LinkText, Paragraph, Span, TitleText, UrlText } from '../Text'
 import { Settings } from '../../hooks/useSettings'
 import { GroupInfo } from '../../hooks/useGroupInfo'
+import { getLocalizeMessage } from '../../modules/i18n'
 
 export const groupInfo: GroupInfo = {
   id: 'Markdown2',
   type: 'Markdown2',
-  label: 'Markdown2',
+  label: getLocalizeMessage('group_label_markdown_2', 'Markdown 2'),
   color: blue[200],
 }
 

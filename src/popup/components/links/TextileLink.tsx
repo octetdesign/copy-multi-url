@@ -3,11 +3,12 @@ import { LinkData, LinkInfo } from '../../hooks/useLinkItem'
 import { Break, DescriptionText, LinkText, Paragraph, Span, TitleText, UrlText } from '../Text'
 import { Settings } from '../../hooks/useSettings'
 import { GroupInfo } from '../../hooks/useGroupInfo'
+import { getLocalizeMessage } from '../../modules/i18n'
 
 export const groupInfo: GroupInfo = {
   id: 'Textile',
   type: 'Textile',
-  label: 'Textile',
+  label: getLocalizeMessage('group_label_textile', 'Textile'),
   color: brown[200],
 }
 

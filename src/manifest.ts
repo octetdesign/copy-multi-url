@@ -5,6 +5,7 @@ import packageData from '../package.json'
 const isDev = process.env.NODE_ENV == 'development'
 
 export default defineManifest({
+  default_locale: 'en',
   name: `${packageData.displayName || packageData.name}${isDev ? ` ➡️ Dev` : ''}`,
   description: packageData.description,
   version: packageData.version,

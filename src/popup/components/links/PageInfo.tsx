@@ -2,11 +2,12 @@ import { blueGrey } from '@mui/material/colors'
 import { LinkData, LinkInfo } from '../../hooks/useLinkItem'
 import { Settings } from '../../hooks/useSettings'
 import { GroupInfo } from '../../hooks/useGroupInfo'
+import { getLocalizeMessage } from '../../modules/i18n'
 
 export const groupInfo: GroupInfo = {
   id: 'PageInfo',
   type: 'PageInfo',
-  label: 'Page Info',
+  label: getLocalizeMessage('group_label_page_info', 'Page Info'),
   color: blueGrey[200],
 }
 

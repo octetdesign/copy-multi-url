@@ -3,11 +3,12 @@ import { LinkData, LinkInfo } from '../../hooks/useLinkItem'
 import { Break, DescriptionText, LinkText, Paragraph, Span, TitleText, UrlText } from '../Text'
 import { Settings } from '../../hooks/useSettings'
 import { GroupInfo } from '../../hooks/useGroupInfo'
+import { getLocalizeMessage } from '../../modules/i18n'
 
 export const groupInfo: GroupInfo = {
   id: 'Wiki',
   type: 'Wiki',
-  label: 'Wiki',
+  label: getLocalizeMessage('group_label_wiki', 'Wiki'),
   color: orange[200],
 }
 

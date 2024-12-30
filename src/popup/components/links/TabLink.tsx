@@ -3,11 +3,12 @@ import { LinkData, LinkInfo } from '../../hooks/useLinkItem'
 import { DescriptionText, LinkText, Paragraph, UrlText, Tab, Break } from '../Text'
 import { Settings } from '../../hooks/useSettings'
 import { GroupInfo } from '../../hooks/useGroupInfo'
+import { getLocalizeMessage } from '../../modules/i18n'
 
 export const groupInfo: GroupInfo = {
   id: 'Tab',
   type: 'Tab',
-  label: 'Tab Delimited',
+  label: getLocalizeMessage('group_label_tab', 'Tab Delimited'),
   color: green[200],
 }
 

@@ -1,9 +1,9 @@
 {
   "name": "url-copy-helper",
-  "displayName": "URL Copy Helper",
+  "displayName": "__MSG_extension_display_name__",
   "version": "0.0.2",
   "author": "OCTET DESIGN",
-  "description": "表示中のWebページのリンクをいろいろな形式でクリップボードにコピーします。",
+  "description": "__MSG_extension_description__",
   "type": "module",
   "license": "MIT",
   "keywords": [

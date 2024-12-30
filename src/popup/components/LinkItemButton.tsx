@@ -1,6 +1,7 @@
 import { Box, Button, darken, Tooltip } from '@mui/material'
 import { LinkItem } from '../hooks/useLinkItem'
 import { Icons, IconSize } from './Icons'
+import { getLocalizeMessage } from '../modules/i18n'
 
 /** リンクアイテムボタン */
 export const LinkItemButton = ({ linkItem }: { linkItem: LinkItem }) => {
@@ -40,7 +41,7 @@ export const LinkItemButton = ({ linkItem }: { linkItem: LinkItem }) => {
       </Tooltip>
       {/* リンク文字列のプレビュー */}
       <Box
-        title="Copy to Clipboard"
+        title={getLocalizeMessage('link_item_button_tooltip', 'Click to copy to clipboard.')}
         sx={{
           fontFamily: 'system-ui',
           fontSize: '0.8rem',
