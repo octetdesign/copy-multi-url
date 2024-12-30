@@ -17,8 +17,11 @@ interface GroupButtonProps {
 /** グループボタン */
 export const GroupButton = (props: GroupButtonProps) => {
   const { icon, label, onClick, enabled, foreColor, backColor } = props
-  const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id: props.id })
-  const style = {
+  const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
+    id: props.id,
+  })
+  const style: React.CSSProperties = {
+    zIndex: isDragging ? 1 : '',
     transform: CSS.Transform.toString(transform),
     transition,
   }
@@ -27,6 +30,7 @@ export const GroupButton = (props: GroupButtonProps) => {
     <Button
       ref={setNodeRef}
       {...attributes}
+      {...listeners}
       onClick={onClick}
       fullWidth
       title={getLocalizeMessage('settings_group_button_tooltip', '')}
@@ -39,7 +43,7 @@ export const GroupButton = (props: GroupButtonProps) => {
         py: 0.5,
       }}
     >
-      <Stack sx={{ alignItems: 'center' }} {...listeners}>
+      <Stack sx={{ alignItems: 'center' }}>
         <div style={{ opacity: enabled ? 0.5 : 0.2 }}>{icon}</div>
         <Typography
           component="p"

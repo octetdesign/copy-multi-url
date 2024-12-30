@@ -72,7 +72,7 @@ export const SettingsPanel = ({
             {groupInfoList.map(({ id, type, label, color }) => {
               const enabled = !!enabledTypes?.find((t) => type === t)
               const foreColor = enabled ? 'rgba(0, 0, 0, 0.5)' : 'rgba(0, 0, 0, 0.3)'
-              const backColor = enabled ? `${color} !important` : 'transparent'
+              const backColor = enabled ? color : '#ffffff'
               return (
                 <GroupButton
                   key={id}
