@@ -3,6 +3,7 @@ import { GroupInfo, LinkData, LinkInfo } from '../getLink'
 import { Settings } from '../Popup'
 
 export const groupInfo: GroupInfo = {
+  id: 'PageInfo',
   type: 'PageInfo',
   label: 'Page Info',
   color: blueGrey[200],

@@ -4,6 +4,7 @@ import { Break, DescriptionText, LinkText, Paragraph, Span, TitleText, UrlText }
 import { Settings } from '../Popup'
 
 export const groupInfo: GroupInfo = {
+  id: 'Wiki',
   type: 'Wiki',
   label: 'Wiki',
   color: orange[200],

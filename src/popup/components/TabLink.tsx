@@ -4,6 +4,7 @@ import { DescriptionText, LinkText, Paragraph, UrlText, Tab, Break } from './Tex
 import { Settings } from '../Popup'
 
 export const groupInfo: GroupInfo = {
+  id: 'Tab',
   type: 'Tab',
   label: 'Tab Delimited',
   color: green[200],

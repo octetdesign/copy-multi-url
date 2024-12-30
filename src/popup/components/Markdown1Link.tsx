@@ -4,6 +4,7 @@ import { Break, DescriptionText, LinkText, Paragraph, Span, UrlText } from './Te
 import { Settings } from '../Popup'
 
 export const groupInfo: GroupInfo = {
+  id: 'Markdown1',
   type: 'Markdown1',
   label: 'Markdown1',
   color: cyan[200],

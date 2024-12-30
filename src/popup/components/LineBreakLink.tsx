@@ -4,6 +4,7 @@ import { Break, DescriptionText, LinkText, Paragraph, UrlText } from './Text'
 import { Settings } from '../Popup'
 
 export const groupInfo: GroupInfo = {
+  id: 'LineBreak',
   type: 'LineBreak',
   label: 'Line Delimited',
   color: lime[200],

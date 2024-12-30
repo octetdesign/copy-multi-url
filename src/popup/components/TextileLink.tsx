@@ -4,6 +4,7 @@ import { Break, DescriptionText, LinkText, Paragraph, Span, TitleText, UrlText }
 import { Settings } from '../Popup'
 
 export const groupInfo: GroupInfo = {
+  id: 'Textile',
   type: 'Textile',
   label: 'Textile',
   color: brown[200],

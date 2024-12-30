@@ -8,6 +8,7 @@ import * as TextileLink from './components/TextileLink'
 import * as TabLink from './components/TabLink'
 import * as PageInfo from './components/PageInfo'
 import { PageData, Settings } from './Popup'
+import { UniqueIdentifier } from '@dnd-kit/core'
 
 export type LinkType =
   | 'LineBreak'
@@ -19,6 +20,7 @@ export type LinkType =
   | 'Tab'
   | 'PageInfo'
 export interface GroupInfo {
+  id: UniqueIdentifier
   type: LinkType
   label: string
   color: string
@@ -66,7 +68,7 @@ export const getLinkItemList = ({
   if (!pageData || !settings) {
     return []
   }
-  const linkItemList: { linkInfo: LinkInfo; from: From; text: string; component: ReactNode }[] = []
+  let linkItemList: { linkInfo: LinkInfo; from: From; text: string; component: ReactNode }[] = []
   const fromList: From[] = ['document', 'og']
   LinkInfoList
     // 説明を付加する／しないでフィルタ
@@ -86,6 +88,17 @@ export const getLinkItemList = ({
         linkItemList.push({ linkInfo, from, text, component })
       })
     })
+  if (settings.groupOrder) {
+    const order = settings.groupOrder
+    linkItemList = linkItemList.sort((a, b) => {
+      const indexA = order.indexOf(a.linkInfo.groupInfo.type)
+      const indexB = order.indexOf(b.linkInfo.groupInfo.type)
+      // typeOrder にない要素は後ろに配置する
+      const rankA = indexA === -1 ? Infinity : indexA
+      const rankB = indexB === -1 ? Infinity : indexB
+      return rankA - rankB
+    })
+  }
   return linkItemList
 }
 

@@ -1,8 +1,8 @@
 {
   "name": "url-copy-helper",
   "displayName": "URL Copy Helper",
-  "version": "0.0.1",
-  "author": "**",
+  "version": "0.0.2",
+  "author": "OCTET DESIGN",
   "description": "表示中のWebページのリンクをいろいろな形式でクリップボードにコピーします。",
   "type": "module",
   "license": "MIT",
@@ -10,7 +10,15 @@
     "chrome-extension",
     "react",
     "vite",
-    "create-chrome-ext"
+    "create-chrome-ext",
+    "copy",
+    "title",
+    "url",
+    "link",
+    "clipboard",
+    "markdown",
+    "wiki",
+    "textile"
   ],
   "engines": {
     "node": ">=14.18.0"
@@ -23,6 +31,8 @@
     "zip": "npm run build && node src/zip.js"
   },
   "dependencies": {
+    "@dnd-kit/core": "^6.3.1",
+    "@dnd-kit/sortable": "^10.0.0",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
     "@mui/icons-material": "^6.2.1",
