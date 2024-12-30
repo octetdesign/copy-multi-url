@@ -1,6 +1,7 @@
 import { blueGrey } from '@mui/material/colors'
-import { GroupInfo, LinkData, LinkInfo } from '../getLink'
-import { Settings } from '../Popup'
+import { LinkData, LinkInfo } from '../../hooks/useLinkItem'
+import { Settings } from '../../hooks/useSettings'
+import { GroupInfo } from '../../hooks/useGroupInfo'
 
 export const groupInfo: GroupInfo = {
   id: 'PageInfo',

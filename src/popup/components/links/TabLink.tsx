@@ -1,7 +1,8 @@
 import { green } from '@mui/material/colors'
-import { GroupInfo, LinkData, LinkInfo } from '../getLink'
-import { DescriptionText, LinkText, Paragraph, UrlText, Tab, Break } from './Text'
-import { Settings } from '../Popup'
+import { LinkData, LinkInfo } from '../../hooks/useLinkItem'
+import { DescriptionText, LinkText, Paragraph, UrlText, Tab, Break } from '../Text'
+import { Settings } from '../../hooks/useSettings'
+import { GroupInfo } from '../../hooks/useGroupInfo'
 
 export const groupInfo: GroupInfo = {
   id: 'Tab',

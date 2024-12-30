@@ -1,7 +1,6 @@
 import { ReactNode } from 'react'
 import { SxProps, Typography } from '@mui/material'
 import BreakIcon from '@mui/icons-material/SubdirectoryArrowLeft'
-// import TabIcon from '@mui/icons-material/KeyboardTab'
 import TabIcon from '@mui/icons-material/East'
 
 const TextSx: SxProps = {

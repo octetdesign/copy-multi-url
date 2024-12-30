@@ -1,15 +1,17 @@
-import { ReactNode } from 'react'
-import * as LineBreakLink from './components/LineBreakLink'
-import * as Markdown1Link from './components/Markdown1Link'
-import * as Markdown2Link from './components/Markdown2Link'
-import * as HtmlLink from './components/HtmlLink'
-import * as WikiLink from './components/WikiLink'
-import * as TextileLink from './components/TextileLink'
-import * as TabLink from './components/TabLink'
-import * as PageInfo from './components/PageInfo'
-import { PageData, Settings } from './Popup'
-import { UniqueIdentifier } from '@dnd-kit/core'
+import * as LineBreakLink from '../components/links/LineBreakLink'
+import * as Markdown1Link from '../components/links/Markdown1Link'
+import * as Markdown2Link from '../components/links/Markdown2Link'
+import * as HtmlLink from '../components/links/HtmlLink'
+import * as WikiLink from '../components/links/WikiLink'
+import * as TextileLink from '../components/links/TextileLink'
+import * as TabLink from '../components/links/TabLink'
+import * as PageInfo from '../components/links/PageInfo'
+import { PageData } from './usePageData'
+import { Settings } from './useSettings'
+import { GroupInfo } from './useGroupInfo'
+import { useMemo } from 'react'
 
+/** リンクタイプ */
 export type LinkType =
   | 'LineBreak'
   | 'Markdown1'
@@ -19,13 +21,8 @@ export type LinkType =
   | 'Textile'
   | 'Tab'
   | 'PageInfo'
-export interface GroupInfo {
-  id: UniqueIdentifier
-  type: LinkType
-  label: string
-  color: string
-}
 
+/** リンク定義 */
 export interface LinkInfo {
   groupInfo: GroupInfo
   description: boolean
@@ -33,17 +30,7 @@ export interface LinkInfo {
   template: (props: { linkData: LinkData; settings: Settings }) => React.ReactNode
 }
 
-export const GroupInfoList = [
-  LineBreakLink.groupInfo,
-  Markdown1Link.groupInfo,
-  Markdown2Link.groupInfo,
-  HtmlLink.groupInfo,
-  WikiLink.groupInfo,
-  TextileLink.groupInfo,
-  TabLink.groupInfo,
-  PageInfo.groupInfo,
-]
-
+/** リンク定義のリスト */
 export const LinkInfoList = [
   ...LineBreakLink.linkInfoList,
   ...Markdown1Link.linkInfoList,
@@ -55,53 +42,7 @@ export const LinkInfoList = [
   ...PageInfo.linkInfoList,
 ]
 
-type From = 'document' | 'og'
-
-/** リンクアイテムリストの取得 */
-export const getLinkItemList = ({
-  pageData,
-  settings,
-}: {
-  pageData: PageData | undefined
-  settings: Settings | undefined
-}) => {
-  if (!pageData || !settings) {
-    return []
-  }
-  let linkItemList: { linkInfo: LinkInfo; from: From; text: string; component: ReactNode }[] = []
-  const fromList: From[] = ['document', 'og']
-  LinkInfoList
-    // 説明を付加する／しないでフィルタ
-    .filter((linkInfo) => linkInfo.description === settings.addDescription)
-    .forEach((linkInfo) => {
-      fromList.forEach((from) => {
-        const linkData = getLinkData[from](pageData)
-        // リンクテキスト（クリップボードにコピーするテキスト）の取得
-        const text = linkInfo.getLinkText({ linkData, settings })
-        // 同じテキストが既に存在していたら除外
-        if (text && linkItemList.find((l) => l.text === text)) {
-          return
-        }
-        // 画面表示用のリンクコンポーネントを取得
-        const component = linkInfo.template({ linkData, settings })
-        // リストに追加
-        linkItemList.push({ linkInfo, from, text, component })
-      })
-    })
-  if (settings.groupOrder) {
-    const order = settings.groupOrder
-    linkItemList = linkItemList.sort((a, b) => {
-      const indexA = order.indexOf(a.linkInfo.groupInfo.type)
-      const indexB = order.indexOf(b.linkInfo.groupInfo.type)
-      // typeOrder にない要素は後ろに配置する
-      const rankA = indexA === -1 ? Infinity : indexA
-      const rankB = indexB === -1 ? Infinity : indexB
-      return rankA - rankB
-    })
-  }
-  return linkItemList
-}
-
+/** リンクデータ */
 export interface LinkData {
   pageData: PageData
   link: string
@@ -109,6 +50,79 @@ export interface LinkData {
   description?: string
 }
 
+/** ページデータの取得元 */
+type GetFrom = 'document' | 'og'
+
+/** リンクアイテム */
+interface LinkItem {
+  /** リンク定義 */
+  linkInfo: LinkInfo
+  /** ページデータの取得元 */
+  getFrom: GetFrom
+  /** リンクテキスト */
+  text: string
+  /** リンクプレビューコンポーネント */
+  component: React.ReactNode
+}
+
+/** リンクアイテムフック */
+export const useLinkItem = ({
+  pageData,
+  settings,
+}: {
+  pageData: PageData | undefined
+  settings: Settings
+}) => {
+  /** リンクアイテムリスト */
+  const linkItemList = useMemo(() => {
+    if (!pageData) {
+      return []
+    }
+    let linkItemList: LinkItem[] = []
+    const getFromList: GetFrom[] = ['document', 'og']
+    LinkInfoList
+      // 説明を付加する／しないでフィルタ
+      .filter((linkInfo) => linkInfo.description === settings.addDescription)
+      .forEach((linkInfo) => {
+        getFromList.forEach((getFrom) => {
+          const linkData = getLinkData[getFrom](pageData)
+          // リンクテキスト（クリップボードにコピーするテキスト）の取得
+          const text = linkInfo.getLinkText({ linkData, settings })
+          // 同じテキストが既に存在していたら除外
+          if (text && linkItemList.find((l) => l.text === text)) {
+            return
+          }
+          // 画面表示用のリンクコンポーネントを取得
+          const component = linkInfo.template({ linkData, settings })
+          // リストに追加
+          linkItemList.push({ linkInfo, getFrom, text, component })
+        })
+      })
+    // リンクアイテムリストの並べ替え
+    if (settings.groupOrder) {
+      const order = settings.groupOrder
+      linkItemList = linkItemList.sort((a, b) => {
+        const indexA = order.indexOf(a.linkInfo.groupInfo.type)
+        const indexB = order.indexOf(b.linkInfo.groupInfo.type)
+        // typeOrder にない要素は後ろに配置する
+        const rankA = indexA === -1 ? Infinity : indexA
+        const rankB = indexB === -1 ? Infinity : indexB
+        return rankA - rankB
+      })
+    }
+    // 設定に従って絞り込みを行う
+    linkItemList = linkItemList.filter(
+      (linkItem) =>
+        settings.enabledTypes?.find((type) => linkItem.linkInfo.groupInfo.type === type) &&
+        settings.addDescription === linkItem.linkInfo.description,
+    )
+    return linkItemList
+  }, [pageData, settings])
+
+  return { linkItemList }
+}
+
+/** リンクデータの取得 */
 const getLinkData: { [from: string]: (pageData: PageData) => LinkData } = {
   /** documentから取得 */
   document: (pageData) => {
@@ -150,8 +164,6 @@ const getLinkData: { [from: string]: (pageData: PageData) => LinkData } = {
     }
   },
 }
-
-////////
 
 /**
  * a と b が類似していたら a を、類似していなかったら b を返す。

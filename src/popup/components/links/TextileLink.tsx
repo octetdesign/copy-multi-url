@@ -1,35 +1,38 @@
-import { lime } from '@mui/material/colors'
-import { GroupInfo, LinkData, LinkInfo } from '../getLink'
-import { Break, DescriptionText, LinkText, Paragraph, UrlText } from './Text'
-import { Settings } from '../Popup'
+import { brown } from '@mui/material/colors'
+import { LinkData, LinkInfo } from '../../hooks/useLinkItem'
+import { Break, DescriptionText, LinkText, Paragraph, Span, TitleText, UrlText } from '../Text'
+import { Settings } from '../../hooks/useSettings'
+import { GroupInfo } from '../../hooks/useGroupInfo'
 
 export const groupInfo: GroupInfo = {
-  id: 'LineBreak',
-  type: 'LineBreak',
-  label: 'Line Delimited',
-  color: lime[200],
+  id: 'Textile',
+  type: 'Textile',
+  label: 'Textile',
+  color: brown[200],
 }
+
+const escapeLink = (link: string) => link.replaceAll('"', '\\"')
 
 export const linkInfoList: LinkInfo[] = [
   {
     groupInfo,
     description: false,
     getLinkText: (props) => getLinkText(props),
-    template: (props) => LineBreakTextTemplate(props),
+    template: (props) => TextileTemplate(props),
   },
   {
     groupInfo,
     description: true,
     getLinkText: (props) => getLinkText(props),
-    template: (props) => LineBreakTextTemplate(props),
+    template: (props) => TextileTemplate(props),
   },
 ]
 
 /** リンクテキスト（クリップボードにコピーするテキスト）の取得 */
 const getLinkText = ({ linkData, settings }: { linkData: LinkData; settings: Settings }) => {
   const { link, url, description } = linkData
-  // format: '%LINK%\n%URL%\n%DESCRIPTION%',
-  let text = `${link}\n${url}`
+  // format: '"%LINK%":%URL%\n%DESCRIPTION%',
+  let text = `"${escapeLink(link)}":${url}`
   if (settings.addDescription && description) {
     text += `\n${description}`
   }
@@ -39,19 +42,14 @@ const getLinkText = ({ linkData, settings }: { linkData: LinkData; settings: Set
   return text
 }
 
-const LineBreakTextTemplate = ({
-  linkData,
-  settings,
-}: {
-  linkData: LinkData
-  settings: Settings
-}) => {
+const TextileTemplate = ({ linkData, settings }: { linkData: LinkData; settings: Settings }) => {
   const { link, url, description } = linkData
   const { addDescription, addLineBreak } = settings
   return (
     <Paragraph>
-      <LinkText>{link}</LinkText>
-      <Break />
+      <Span>"</Span>
+      <LinkText>{escapeLink(link)}</LinkText>
+      <Span>":</Span>
       <UrlText>{url}</UrlText>
       {addDescription && description && (
         <>

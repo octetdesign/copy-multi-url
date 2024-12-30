@@ -1,7 +1,8 @@
 import { pink } from '@mui/material/colors'
-import { GroupInfo, LinkData, LinkInfo } from '../getLink'
-import { Break, DescriptionText, LinkText, Paragraph, Span, TitleText, UrlText } from './Text'
-import { Settings } from '../Popup'
+import { LinkData, LinkInfo } from '../../hooks/useLinkItem'
+import { Break, DescriptionText, LinkText, Paragraph, Span, TitleText, UrlText } from '../Text'
+import { Settings } from '../../hooks/useSettings'
+import { GroupInfo } from '../../hooks/useGroupInfo'
 
 export const groupInfo: GroupInfo = {
   id: 'Html',

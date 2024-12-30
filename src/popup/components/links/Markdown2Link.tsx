@@ -1,39 +1,40 @@
-import { brown } from '@mui/material/colors'
-import { GroupInfo, LinkData, LinkInfo } from '../getLink'
-import { Break, DescriptionText, LinkText, Paragraph, Span, TitleText, UrlText } from './Text'
-import { Settings } from '../Popup'
+import { blue } from '@mui/material/colors'
+import { LinkData, LinkInfo } from '../../hooks/useLinkItem'
+import { Break, DescriptionText, LinkText, Paragraph, Span, TitleText, UrlText } from '../Text'
+import { Settings } from '../../hooks/useSettings'
+import { GroupInfo } from '../../hooks/useGroupInfo'
 
 export const groupInfo: GroupInfo = {
-  id: 'Textile',
-  type: 'Textile',
-  label: 'Textile',
-  color: brown[200],
+  id: 'Markdown2',
+  type: 'Markdown2',
+  label: 'Markdown2',
+  color: blue[200],
 }
 
-const escapeLink = (link: string) => link.replaceAll('"', '\\"')
+const escapeLink = (link: string) => link.replaceAll('[', '\\[').replaceAll(']', '\\]')
 
 export const linkInfoList: LinkInfo[] = [
   {
     groupInfo,
     description: false,
     getLinkText: (props) => getLinkText(props),
-    template: (props) => TextileTemplate(props),
+    template: (props) => Markdown2Template(props),
   },
   {
     groupInfo,
     description: true,
     getLinkText: (props) => getLinkText(props),
-    template: (props) => TextileTemplate(props),
+    template: (props) => Markdown2Template(props),
   },
 ]
 
 /** リンクテキスト（クリップボードにコピーするテキスト）の取得 */
 const getLinkText = ({ linkData, settings }: { linkData: LinkData; settings: Settings }) => {
   const { link, url, description } = linkData
-  // format: '"%LINK%":%URL%\n%DESCRIPTION%',
-  let text = `"${escapeLink(link)}":${url}`
+  //format: '[id]: %URL%\n[%LINK%][id]\n\n%DESCRIPTION%',
+  let text = `[id]: ${url}\n[${escapeLink(link)}][id]`
   if (settings.addDescription && description) {
-    text += `\n${description}`
+    text += `\n\n${description}`
   }
   if (settings.addLineBreak) {
     text += '\n'
@@ -41,17 +42,21 @@ const getLinkText = ({ linkData, settings }: { linkData: LinkData; settings: Set
   return text
 }
 
-const TextileTemplate = ({ linkData, settings }: { linkData: LinkData; settings: Settings }) => {
+const Markdown2Template = ({ linkData, settings }: { linkData: LinkData; settings: Settings }) => {
   const { link, url, description } = linkData
   const { addDescription, addLineBreak } = settings
   return (
     <Paragraph>
-      <Span>"</Span>
-      <LinkText>{escapeLink(link)}</LinkText>
-      <Span>":</Span>
+      <Span>{'[id]: '}</Span>
       <UrlText>{url}</UrlText>
+      <br />
+      <Span>[</Span>
+      <LinkText>{escapeLink(link)}</LinkText>
+      <Span>]</Span>
+      <Span>[id]</Span>
       {addDescription && description && (
         <>
+          <Break />
           <Break />
           <DescriptionText>{description}</DescriptionText>
         </>
