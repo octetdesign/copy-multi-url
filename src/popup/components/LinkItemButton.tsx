@@ -1,18 +1,18 @@
-import { Box, Button, darken, Tooltip } from '@mui/material'
+import { Box, Button, darken } from '@mui/material'
 import { LinkItem } from '../hooks/useLinkItem'
 import { Icons, IconSize } from './Icons'
 import { getLocalizeMessage } from '../modules/i18n'
 
 /** リンクアイテムボタン */
 export const LinkItemButton = ({ linkItem }: { linkItem: LinkItem }) => {
-  const { linkInfo } = linkItem
-  const { type, color } = linkInfo.groupInfo
+  const { linkInfo, text, buttonText } = linkItem
+  const { type, color, label } = linkInfo.groupInfo
 
   return (
     <Button
       fullWidth
-      onClick={async (e) => {
-        const text = e.altKey || e.metaKey ? `${linkItem.text}\n` : linkItem.text
+      onClick={async () => {
+        // クリップボードにコピー
         await navigator.clipboard.writeText(text)
         setTimeout(() => {
           window.close()
@@ -36,9 +36,9 @@ export const LinkItemButton = ({ linkItem }: { linkItem: LinkItem }) => {
       }}
     >
       {/* アイコン */}
-      <Tooltip title={linkInfo.groupInfo.label} arrow placement="bottom">
-        <div style={{ ...IconSize, opacity: 0.5 }}>{Icons[type]}</div>
-      </Tooltip>
+      <Box title={label} style={{ ...IconSize, opacity: 0.5 }}>
+        {Icons[type]}
+      </Box>
       {/* リンク文字列のプレビュー */}
       <Box
         title={getLocalizeMessage('link_item_button_tooltip', 'Click to copy to clipboard.')}
@@ -50,7 +50,7 @@ export const LinkItemButton = ({ linkItem }: { linkItem: LinkItem }) => {
           p: 1,
         }}
       >
-        {linkItem.buttonText}
+        {buttonText}
       </Box>
     </Button>
   )
