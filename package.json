@@ -1,6 +1,6 @@
 {
-  "name": "url-copy-helper",
-  "displayName": "URL Copy Helper",
+  "name": "copy-multi-url",
+  "displayName": "Copy Multi URL",
   "version": "0.0.2",
   "author": "OCTET DESIGN",
   "description": "__MSG_extension_description__",
