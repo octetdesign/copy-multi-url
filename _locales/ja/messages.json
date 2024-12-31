@@ -1,7 +1,4 @@
 {
-  "extension_display_name": {
-    "message": "URL Copy Helper"
-  },
   "extension_description": {
     "message": "表示中のWebページのリンクをいろいろな形式でクリップボードにコピーします。"
   },
