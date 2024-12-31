@@ -76,17 +76,29 @@ export const usePageData = () => {
   /** ページデータの読み込み */
   useEffect(() => {
     const load = async () => {
+      // 現在のタブを取得
       const [tab] = await chrome.tabs.query({ active: true, currentWindow: true })
       if (!tab?.id || !tab?.url) {
         console.warn('No active tab found.')
         return
       }
-      const result = await chrome.scripting.executeScript({
-        target: { tabId: tab.id },
-        func: getPageData,
-      })
-      const pageData = result[0].result
-      setPageData(pageData)
+      try {
+        // スクリプトを実行してページデータを取得
+        const result = await chrome.scripting.executeScript({
+          target: { tabId: tab.id },
+          func: getPageData,
+        })
+        const pageData = result[0].result
+        setPageData(pageData)
+      } catch (error) {
+        // スクリプト実行エラー時はタブからタイトルとURLだけ取得
+        console.warn(error)
+        const pageData: PageData = {
+          title: tab.title ? tab.title : tab.url,
+          url: tab.url,
+        }
+        setPageData(pageData)
+      }
     }
     load()
   }, [])
