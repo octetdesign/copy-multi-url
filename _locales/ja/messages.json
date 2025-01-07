@@ -33,7 +33,7 @@
     "message": "Add"
   },
   "settings_description_tooltip": {
-    "message": "リンク文字列に説明を追加（ページに説明データがある場合のみ）"
+    "message": "リンク文字列に説明を追加（ページに説明データがある場合のみ） [Shift]"
   },
   "settings_line_break_tooltip": {
     "message": "リンク文字列の最後に改行を追加"
