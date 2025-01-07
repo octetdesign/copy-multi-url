@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import LineBreakIcon from '@mui/icons-material/SubdirectoryArrowLeft'
 import {
   closestCenter,
@@ -52,6 +53,21 @@ export const SettingsPanel = ({
     const groupOrder = newGroupInfoList.map((info) => info.type)
     onChangeSettings({ ...settings, groupOrder })
   }
+
+  // Shiftキーの押下中は addDescription の設定を反転させる
+  useEffect(() => {
+    const handleShiftKey = (e: KeyboardEvent) => {
+      if (e.key === 'Shift') {
+        onChangeSettings({ ...settings, addDescription: !addDescription })
+      }
+    }
+    document.addEventListener('keydown', handleShiftKey)
+    document.addEventListener('keyup', handleShiftKey)
+    return () => {
+      document.removeEventListener('keydown', handleShiftKey)
+      document.removeEventListener('keyup', handleShiftKey)
+    }
+  }, [])
 
   return (
     <Box

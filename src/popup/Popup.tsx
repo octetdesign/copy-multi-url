@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { Box, Stack } from '@mui/material'
 import { useSettings } from './hooks/useSettings'
 import { usePageData } from './hooks/usePageData'
@@ -12,13 +13,14 @@ export const Popup = () => {
   const { settings, updateSettings } = useSettings()
   const { groupInfoList, updateGroupInfoList } = useGroupInfo({ settings })
   const { linkItemList } = useLinkItem({ pageData, settings })
+  const [renderKey, setRenderKey] = useState(0)
 
   if (!pageData) {
     return <></>
   }
 
   return (
-    <Box sx={{ p: 0, m: 0 }}>
+    <Box sx={{ p: 0, m: 0 }} key={renderKey}>
       {/* リンクアイテムボタンのリスト */}
       <Stack
         direction="column"
@@ -39,6 +41,8 @@ export const Popup = () => {
         onChangeSettings={(newSettings) => {
           // 拡張機能設定の更新
           updateSettings(newSettings)
+          // レンダリングの更新
+          setRenderKey((prev) => prev + 1)
         }}
         onChangeGroupInfoList={(newGroupInfoList) => {
           // グループ定義リストの更新
