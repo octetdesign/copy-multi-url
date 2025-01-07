@@ -1,7 +1,7 @@
 {
   "name": "copy-multi-url",
   "displayName": "Copy Multi URL",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "OCTET DESIGN",
   "description": "__MSG_extension_description__",
   "type": "module",
@@ -51,5 +51,9 @@
     "prettier": "^3.0.3",
     "typescript": "^5.2.2",
     "vite": "^4.4.11"
+  },
+  "resolutions": {
+    "braces": "^3.0.3",
+    "micromatch": "^4.0.8"
   }
 }
