@@ -6,6 +6,7 @@ import HtmlIcon from '@mui/icons-material/Code'
 import { WikiIcon } from './icon/WikiIcon'
 // import TextileIcon from '@mui/icons-material/FormatQuote'
 import TextileIcon from '@mui/icons-material/TextFields'
+import { ReStructuredTextIcon } from './icon/ReStructuredTextIcon'
 import PageInfoIcon from '@mui/icons-material/Article'
 import TabIcon from '@mui/icons-material/KeyboardTab'
 import { SxProps } from '@mui/material'
@@ -23,6 +24,8 @@ export const Icons = {
   Html: <HtmlIcon sx={IconSx} />,
   Wiki: <WikiIcon sx={IconSx} />,
   Textile: <TextileIcon sx={IconSx} />,
+  ReStructuredText1: <ReStructuredTextIcon sx={IconSx} />,
+  ReStructuredText2: <ReStructuredTextIcon sx={IconSx} />,
   Tab: <TabIcon sx={IconSx} />,
   PageInfo: <PageInfoIcon sx={IconSx} />,
 }

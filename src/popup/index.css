@@ -23,6 +23,6 @@
 }
 
 body {
-  min-width: 45rem;
+  width: 800px;
   margin: 0;
 }

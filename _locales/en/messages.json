@@ -20,6 +20,12 @@
   "group_label_line_textile": {
     "message": "Textile"
   },
+  "group_label_line_rest_1": {
+    "message": "reST 1"
+  },
+  "group_label_line_rest_2": {
+    "message": "reST 2"
+  },
   "group_label_tab": {
     "message": "Tab Delimited"
   },

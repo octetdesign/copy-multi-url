@@ -4,6 +4,8 @@ import * as Markdown2Link from '../components/links/Markdown2Link'
 import * as HtmlLink from '../components/links/HtmlLink'
 import * as WikiLink from '../components/links/WikiLink'
 import * as TextileLink from '../components/links/TextileLink'
+import * as ReStructuredText1Link from '../components/links/ReStructuredText1Link'
+import * as ReStructuredText2Link from '../components/links/ReStructuredText2Link'
 import * as TabLink from '../components/links/TabLink'
 import * as PageInfo from '../components/links/PageInfo'
 import { PageData } from './usePageData'
@@ -19,6 +21,8 @@ export type LinkType =
   | 'Html'
   | 'Wiki'
   | 'Textile'
+  | 'ReStructuredText1'
+  | 'ReStructuredText2'
   | 'Tab'
   | 'PageInfo'
 
@@ -42,6 +46,8 @@ export const LinkInfoList = [
   ...HtmlLink.linkInfoList,
   ...WikiLink.linkInfoList,
   ...TextileLink.linkInfoList,
+  ...ReStructuredText1Link.linkInfoList,
+  ...ReStructuredText2Link.linkInfoList,
   ...TabLink.linkInfoList,
   ...PageInfo.linkInfoList,
 ]

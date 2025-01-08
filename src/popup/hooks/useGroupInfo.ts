@@ -6,6 +6,8 @@ import * as Markdown2Link from '../components/links/Markdown2Link'
 import * as HtmlLink from '../components/links/HtmlLink'
 import * as WikiLink from '../components/links/WikiLink'
 import * as TextileLink from '../components/links/TextileLink'
+import * as ReStructuredText1Link from '../components/links/ReStructuredText1Link'
+import * as ReStructuredText2Link from '../components/links/ReStructuredText2Link'
 import * as TabLink from '../components/links/TabLink'
 import * as PageInfo from '../components/links/PageInfo'
 import { Settings } from './useSettings'
@@ -27,6 +29,8 @@ const GroupInfoList = [
   HtmlLink.groupInfo,
   WikiLink.groupInfo,
   TextileLink.groupInfo,
+  ReStructuredText1Link.groupInfo,
+  ReStructuredText2Link.groupInfo,
   TabLink.groupInfo,
   PageInfo.groupInfo,
 ]
