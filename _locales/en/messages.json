@@ -35,16 +35,16 @@
   "link_item_button_tooltip": {
     "message": "Click to copy to clipboard."
   },
-  "settings_add": {
-    "message": "Add"
+  "settings_append": {
+    "message": "Append"
   },
   "settings_description_tooltip": {
-    "message": "Add description to link text. (Only when description data exists on the page) [Shift]"
+    "message": "Append description to link text. (Only when description data exists on the page) [Shift]"
   },
   "settings_line_break_tooltip": {
-    "message": "Add a line break at the end of link text."
+    "message": "Append a line break at the end of link text."
   },
-  "settings_group_button_tooltip": {
-    "message": "Click to show/hide links. Drag & drop to reorder links."
+  "settings_group_help": {
+    "message": "Click the button to toggle the display of links, and drag to reorder them."
   }
 }

@@ -35,8 +35,8 @@
   "link_item_button_tooltip": {
     "message": "クリックしてクリップボードにコピー。"
   },
-  "settings_add": {
-    "message": "Add"
+  "settings_append": {
+    "message": "Append"
   },
   "settings_description_tooltip": {
     "message": "リンク文字列に説明を追加（ページに説明データがある場合のみ） [Shift]"
@@ -44,7 +44,7 @@
   "settings_line_break_tooltip": {
     "message": "リンク文字列の最後に改行を追加"
   },
-  "settings_group_button_tooltip": {
-    "message": "クリックでリンクの表示／非表示を切り替え。ドラッグ＆ドロップでリンクを並べ替え。"
+  "settings_group_help": {
+    "message": "ボタンのクリックでリンクの表示切り替え、ドラッグしてリンクの並べ替え。"
   }
 }
