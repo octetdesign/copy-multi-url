@@ -12,20 +12,32 @@ export interface Settings {
   /** リンクに改行を追加するか */
   addLineBreak: boolean
 }
-const groups: LinkType[] = [
-  'LineBreak',
-  'Markdown1',
-  'Markdown2',
-  'Html',
-  'Wiki',
-  'Textile',
-  'Tab',
-  'PageInfo',
-]
 /** 初期設定 */
 const defaultSettings: Settings = {
-  groupOrder: groups,
-  enabledTypes: groups,
+  groupOrder: [
+    'LineBreak',
+    'Markdown1',
+    'Markdown2',
+    'Html',
+    'Wiki',
+    'Textile',
+    'ReStructuredText1',
+    'ReStructuredText2',
+    'Tab',
+    'PageInfo',
+  ],
+  enabledTypes: [
+    'LineBreak',
+    'Markdown1',
+    // 'Markdown2',
+    'Html',
+    'Wiki',
+    'Textile',
+    'ReStructuredText1',
+    // 'ReStructuredText2',
+    'Tab',
+    'PageInfo',
+  ],
   addDescription: false,
   addLineBreak: false,
 }
