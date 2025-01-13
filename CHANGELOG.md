@@ -7,9 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.4] - 2025-01-13
+
 ### Fixed
 
-- Windows環境でのレイアウト調整
+- ポップアップのレイアウトを調整してWindows環境での表示を改善しました。
+- リンク形式の未選択時に警告メッセージを表示するようにしました。
 
 ## [1.0.3] - 2025-01-11
 

@@ -1,11 +1,12 @@
-import { useState } from 'react'
-import { Box, Stack } from '@mui/material'
+import { useEffect, useRef, useState } from 'react'
+import { Box, Stack, Typography } from '@mui/material'
 import { useSettings } from './hooks/useSettings'
 import { usePageData } from './hooks/usePageData'
 import { useGroupInfo } from './hooks/useGroupInfo'
 import { useLinkItem } from './hooks/useLinkItem'
 import { LinkItemButton } from './components/LinkItemButton'
 import { SettingsPanel } from './components/SettingsPanel'
+import { getLocalizeMessage } from './modules/i18n'
 
 /** リンクリストのポップアップ */
 export const Popup = () => {
@@ -15,25 +16,61 @@ export const Popup = () => {
   const { linkItemList } = useLinkItem({ pageData, settings })
   const [renderKey, setRenderKey] = useState(0)
 
+  // リストの高さ調整
+  const maxHeight = 600
+  const settingsHeight = 62
+  const listRef = useRef<HTMLDivElement>(null)
+  const [wrapperHeight, setWrapperHeight] = useState<string | undefined>(undefined)
+  useEffect(() => {
+    const listHeight = listRef.current?.clientHeight
+    if (listHeight && listHeight + settingsHeight > maxHeight) {
+      setWrapperHeight(`${maxHeight - settingsHeight}px`)
+    } else {
+      setWrapperHeight(undefined)
+    }
+  }, [linkItemList])
+
+  // ページデータがない場合は何も表示しない
   if (!pageData) {
     return <></>
   }
 
   return (
-    <Box sx={{ p: 0, m: 0 }} key={renderKey}>
+    <Box key={renderKey} sx={{ p: 0, m: 0 }}>
       {/* リンクアイテムボタンのリスト */}
-      <Stack
-        direction="column"
-        spacing={0.5}
+      <Box
+        className="LinkItemButtonListWrapper"
         sx={{
-          p: 1,
-          mb: '64px',
+          p: 0,
+          m: 0,
+          height: wrapperHeight,
+          overflowY: 'scroll',
+          overflowX: 'hidden',
+          overscrollBehavior: 'none',
         }}
       >
-        {linkItemList.map((linkItem) => (
-          <LinkItemButton key={linkItem.id} linkItem={linkItem} />
-        ))}
-      </Stack>
+        <Stack
+          ref={listRef}
+          className="LinkItemButtonList"
+          direction="column"
+          spacing={0.5}
+          sx={{
+            p: 1,
+            m: 0,
+          }}
+        >
+          {linkItemList.length > 0 ? (
+            linkItemList.map((linkItem) => <LinkItemButton key={linkItem.id} linkItem={linkItem} />)
+          ) : (
+            <Typography
+              component="p"
+              sx={{ py: 2, m: 0, color: '#666', fontSize: '0.8rem', textAlign: 'center' }}
+            >
+              {getLocalizeMessage('message_select_link_format', 'Please select a link format.')}
+            </Typography>
+          )}
+        </Stack>
+      </Box>
       {/* 設定 */}
       <SettingsPanel
         settings={settings}

@@ -46,5 +46,8 @@
   },
   "settings_group_help": {
     "message": "Click the button to toggle the display of links, and drag to reorder them."
+  },
+  "message_select_link_format": {
+    "message": "* Please select a link format to display."
   }
 }

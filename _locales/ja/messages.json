@@ -46,5 +46,8 @@
   },
   "settings_group_help": {
     "message": "ボタンのクリックでリンクの表示切り替え、ドラッグしてリンクの並べ替え。"
+  },
+  "message_select_link_format": {
+    "message": "※表示するリンク形式を選択して下さい。"
   }
 }
