@@ -57,16 +57,16 @@ export const SettingsPanel = ({
     onChangeSettings({ ...settings, groupOrder })
   }
 
-  // Shiftキーの押下で addDescription の設定を反転させる
+  // Spaceキーの押下で addDescription の設定を反転させる
   useEffect(() => {
-    const handleShiftKey = (e: KeyboardEvent) => {
-      if (e.key === 'Shift') {
+    const handleSpaceKey = (e: KeyboardEvent) => {
+      if (e.code === 'Space') {
         onChangeSettings({ ...settings, addDescription: !addDescription })
       }
     }
-    document.addEventListener('keydown', handleShiftKey)
+    document.addEventListener('keydown', handleSpaceKey)
     return () => {
-      document.removeEventListener('keydown', handleShiftKey)
+      document.removeEventListener('keydown', handleSpaceKey)
     }
   }, [])
 

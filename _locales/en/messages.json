@@ -39,7 +39,7 @@
     "message": "Append"
   },
   "settings_description_tooltip": {
-    "message": "Append description to link text. (Only when description data exists on the page) [Shift]"
+    "message": "Append description to link text. (Only when description data exists on the page) [Space]"
   },
   "settings_line_break_tooltip": {
     "message": "Append a line break at the end of link text."
