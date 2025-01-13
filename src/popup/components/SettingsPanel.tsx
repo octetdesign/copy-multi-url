@@ -57,24 +57,24 @@ export const SettingsPanel = ({
     onChangeSettings({ ...settings, groupOrder })
   }
 
-  // Shiftキーの押下で addDescription の設定を反転させる
+  // Spaceキーの押下で addDescription の設定を反転させる
   useEffect(() => {
-    const handleShiftKey = (e: KeyboardEvent) => {
-      if (e.key === 'Shift') {
+    const handleSpaceKey = (e: KeyboardEvent) => {
+      if (e.code === 'Space') {
         onChangeSettings({ ...settings, addDescription: !addDescription })
       }
     }
-    document.addEventListener('keydown', handleShiftKey)
+    document.addEventListener('keydown', handleSpaceKey)
     return () => {
-      document.removeEventListener('keydown', handleShiftKey)
+      document.removeEventListener('keydown', handleSpaceKey)
     }
   }, [])
 
   return (
-    <>
+    <Box className="SettingsPanel" sx={{ overflow: 'hidden', overscrollBehavior: 'none' }}>
       {/* Help */}
       <Box
-        className="help"
+        className="Help"
         sx={{
           backgroundColor: yellow[50],
           borderTop: 'solid 1px rgba(0, 0, 0, 0.2)',
@@ -96,12 +96,11 @@ export const SettingsPanel = ({
       </Box>
       <Box
         sx={{
+          zIndex: 10,
+          position: 'relative',
           backgroundColor: '#fff',
-          position: 'fixed',
-          bottom: 0,
           display: 'grid',
           gridTemplateColumns: '1fr auto',
-          width: '100%',
           borderTop: 'solid 1px rgba(0, 0, 0, 0.2)',
         }}
       >
@@ -153,6 +152,7 @@ export const SettingsPanel = ({
             direction="column"
             sx={{
               backgroundColor: '#f8f8f8',
+              borderLeft: 'solid 1px rgba(0, 0, 0, 0.1)',
               display: 'flex',
               alignItems: 'flex-start',
               py: 0,
@@ -201,6 +201,6 @@ export const SettingsPanel = ({
           </Stack>
         </Box>
       </Box>
-    </>
+    </Box>
   )
 }

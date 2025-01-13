@@ -39,12 +39,15 @@
     "message": "Append"
   },
   "settings_description_tooltip": {
-    "message": "リンク文字列に説明を追加（ページに説明データがある場合のみ） [Shift]"
+    "message": "リンク文字列に説明を追加（ページに説明データがある場合のみ） [Space]"
   },
   "settings_line_break_tooltip": {
     "message": "リンク文字列の最後に改行を追加"
   },
   "settings_group_help": {
     "message": "ボタンのクリックでリンクの表示切り替え、ドラッグしてリンクの並べ替え。"
+  },
+  "message_select_link_format": {
+    "message": "※表示するリンク形式を選択して下さい。"
   }
 }
