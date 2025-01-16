@@ -106,5 +106,7 @@ export const usePageData = () => {
   return {
     /** ページデータ */
     pageData,
+    /** ページデータに説明があるか */
+    hasDescription: pageData?.description !== undefined || pageData?.og?.description !== undefined,
   }
 }

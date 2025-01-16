@@ -44,8 +44,11 @@
   "settings_line_break_tooltip": {
     "message": "リンク文字列の最後に改行を追加"
   },
-  "settings_group_help": {
-    "message": "ボタンのクリックでリンクの表示切り替え、ドラッグしてリンクの並べ替え。"
+  "settings_group_help_link": {
+    "message": "ボタンのクリックでリンクの表示切り替え。ドラッグでリンクの並べ替え。"
+  },
+  "settings_group_help_description": {
+    "message": "[Space]キーで description の表示切り替え。"
   },
   "message_select_link_format": {
     "message": "※表示するリンク形式を選択して下さい。"

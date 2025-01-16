@@ -22,6 +22,7 @@ import { yellow } from '@mui/material/colors'
 export const SettingsPanel = ({
   settings,
   groupInfoList,
+  enableDescription,
   onChangeSettings,
   onChangeGroupInfoList,
 }: {
@@ -29,6 +30,8 @@ export const SettingsPanel = ({
   settings: Settings
   /** グループ定義リスト */
   groupInfoList: GroupInfo[]
+  /** descriptionが有効か */
+  enableDescription: boolean
   /** 拡張機能設定変更時の処理 */
   onChangeSettings: (newSettings: Settings) => void
   /** グループ定義リスト変更時の処理 */
@@ -60,7 +63,7 @@ export const SettingsPanel = ({
   // Spaceキーの押下で addDescription の設定を反転させる
   useEffect(() => {
     const handleSpaceKey = (e: KeyboardEvent) => {
-      if (e.code === 'Space') {
+      if (e.code === 'Space' && enableDescription) {
         onChangeSettings({ ...settings, addDescription: !addDescription })
       }
     }
@@ -91,7 +94,8 @@ export const SettingsPanel = ({
       >
         <HelpOutlineIcon sx={{ color: 'rgba(0, 0, 0, 0.5)', fontSize: '1rem', mr: 0.5 }} />
         <Typography component="p" sx={{ color: 'rgba(0, 0, 0, 0.75)', fontSize: '0.7rem' }}>
-          {getLocalizeMessage('settings_group_help', '')}
+          {getLocalizeMessage('settings_group_help_link', '')}
+          {enableDescription && getLocalizeMessage('settings_group_help_description', '')}
         </Typography>
       </Box>
       <Box
@@ -166,10 +170,20 @@ export const SettingsPanel = ({
             {/* description */}
             <FormControlLabel
               control={
-                <Checkbox checked={addDescription} size="small" disableRipple sx={{ p: 0 }} />
+                <Checkbox
+                  checked={addDescription}
+                  size="small"
+                  disabled={!enableDescription}
+                  disableRipple
+                  sx={{ p: 0 }}
+                />
               }
               label={
-                <Typography sx={{ color: '#666', fontSize: '0.7rem' }}>description</Typography>
+                <Typography
+                  sx={{ color: enableDescription ? '#666' : 'rgba(0,0,0,0.3)', fontSize: '0.7rem' }}
+                >
+                  description
+                </Typography>
               }
               title={getLocalizeMessage('settings_description_tooltip', '')}
               onChange={(e, checked) => {

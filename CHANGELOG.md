@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.5] - 2025-01-17
+
+### Changed
+
+- ページデータにdescriptionが含まれる場合のみdescriptionチェックボックスを有効にするようにしました。
+
 ## [1.0.4] - 2025-01-13
 
 ### Fixed
