@@ -10,7 +10,7 @@ import { getLocalizeMessage } from './modules/i18n'
 
 /** リンクリストのポップアップ */
 export const Popup = () => {
-  const { pageData } = usePageData()
+  const { pageData, hasDescription } = usePageData()
   const { settings, updateSettings } = useSettings()
   const { groupInfoList, updateGroupInfoList } = useGroupInfo({ settings })
   const { linkItemList } = useLinkItem({ pageData, settings })
@@ -75,6 +75,7 @@ export const Popup = () => {
       <SettingsPanel
         settings={settings}
         groupInfoList={groupInfoList}
+        enableDescription={hasDescription}
         onChangeSettings={(newSettings) => {
           // 拡張機能設定の更新
           updateSettings(newSettings)

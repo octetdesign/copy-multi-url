@@ -44,8 +44,11 @@
   "settings_line_break_tooltip": {
     "message": "Append a line break at the end of link text."
   },
-  "settings_group_help": {
+  "settings_group_help_link": {
     "message": "Click the button to toggle the display of links, and drag to reorder them."
+  },
+  "settings_group_help_description": {
+    "message": "[Space] key to toggle the display of description."
   },
   "message_select_link_format": {
     "message": "* Please select a link format to display."
