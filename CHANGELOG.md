@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.6] - 2025-02-06
+
+### Security
+
+- Dependabot警告に対応しました。（undici, vite）
+
 ## [1.0.5] - 2025-01-17
 
 ### Changed
