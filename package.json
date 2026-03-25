@@ -61,6 +61,7 @@
     "micromatch": "^4.0.8",
     "rollup@2.79.2": "2.80.0",
     "minimatch": "^3.1.5",
-    "@babel/runtime": "^7.29.2"
+    "@babel/runtime": "^7.29.2",
+    "brace-expansion": "^1.1.12"
   }
 }
