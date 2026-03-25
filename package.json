@@ -58,6 +58,9 @@
   },
   "resolutions": {
     "braces": "^3.0.3",
-    "micromatch": "^4.0.8"
+    "micromatch": "^4.0.8",
+    "rollup@2.79.2": "2.80.0",
+    "minimatch": "^3.1.5",
+    "@babel/runtime": "^7.29.2"
   }
 }
