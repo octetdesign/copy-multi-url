@@ -54,7 +54,7 @@
     "gulp-zip": "^6.0.0",
     "prettier": "^3.0.3",
     "typescript": "^5.2.2",
-    "vite": "^6.4.1"
+    "vite": "^6.4.2"
   },
   "resolutions": {
     "braces": "^3.0.3",
@@ -62,6 +62,11 @@
     "rollup@2.79.2": "2.80.0",
     "minimatch": "^3.1.5",
     "@babel/runtime": "^7.29.2",
-    "brace-expansion": "^1.1.12"
+    "brace-expansion": "^1.1.12",
+    "tar": "^7.5.16",
+    "ip-address": "^10.1.1",
+    "yaml": "^1.10.3",
+    "picomatch@^2.2.2": "^2.3.2",
+    "picomatch@^2.3.1": "^2.3.2"
   }
 }
